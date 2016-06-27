@@ -21,7 +21,17 @@ Deploy at least two instances of every application.
 
 ####Components####
 
-Scale your components as described in the [Scaling Platform Availability](#availability) section below. Components should be distributed across two or more <%=vars.az%> (AZs).
+Scale your components as described in the [Scaling Platform Availability](#availability) section below. 
+
+For a high-availability deployment, use at least three Availability Zones (AZs). If you use more than three AZs, ensure that you use an odd number of AZs.
+
+This ensures your deployment maintains quorum for the following components:
+
+- etcd
+- consul
+- Diego BBS
+
+When scaling these components, use an odd number of instances equal to or one greater than the number of AZs you have, in order to maintain quorum. Distribute your instances across your AZs so that no AZ has a majority of nodes.
 
 ####Space####
 
